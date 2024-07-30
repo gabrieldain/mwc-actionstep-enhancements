@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.2
+// @version      0.3
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -167,7 +167,40 @@
         }
     }
 
-    // Set up a MutationObserver to watch for changes in the DOM
+    function formatPastDates() {
+        const dateContainers = document.querySelectorAll('.Row');
+        dateContainers.forEach(container => {
+            const dt = container.querySelector('dt');
+            const dd = container.querySelector('dd');
+            if (dt && dd && dt.textContent.trim() === 'Date:') {
+                const dateText = dd.textContent;
+                const dateMatch = dateText.match(/(\w+\s+\w+\s+\d+,\s+\d{4})/);
+                if (dateMatch) {
+                    const dateStr = dateMatch[1];
+                    const date = new Date(dateStr);
+                    const now = new Date();
+                    if (date < now) {
+                        const newContent = dd.innerHTML.replace(dateStr, `<span style="font-weight: bold; color: red;">${dateStr} [EXPIRED]</span>`);
+                        dd.innerHTML = newContent;
+                    }
+                }
+            }
+        });
+    }
+
+    // Run the functions when the page is loaded
+    window.addEventListener('load', () => {
+        runMultipleTimes();
+        createCollapseExpandButtons();
+        formatPastDates();
+    });
+
+    // Also run immediately in case the page has already loaded
+    runMultipleTimes();
+    createCollapseExpandButtons();
+    // formatPastDates();
+
+    // Add formatPastDates to the MutationObserver callback
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             if (mutation.type === 'childList') {
@@ -178,14 +211,4 @@
 
     // Start observing the document with the configured parameters
     observer.observe(document.body, { childList: true, subtree: true });
-
-    // Run the functions when the page is loaded
-    window.addEventListener('load', () => {
-        runMultipleTimes();
-        createCollapseExpandButtons();
-    });
-
-    // Also run immediately in case the page has already loaded
-    runMultipleTimes();
-    createCollapseExpandButtons();
 })();
