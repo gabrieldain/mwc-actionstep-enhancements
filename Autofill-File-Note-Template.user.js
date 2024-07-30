@@ -26,7 +26,7 @@ const dropdownHtml = `
             <input type="text" id="finish_time" placeholder="HH:MM" style="width: 70px;">
 
             <label for="attendees">Attendees:</label>
-            <input type="text" id="attendees" placeholder="List names" style="width: 347px;">
+            <input type="text" id="attendees" placeholder="List full names" style="width: 347px;">
         </div>
 
         <div style="display: flex; gap: 10px; margin-top: 10px;">
