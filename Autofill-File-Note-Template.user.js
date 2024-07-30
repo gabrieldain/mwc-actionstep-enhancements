@@ -28,8 +28,8 @@ const dropdownHtml = `
     </div>
 
     <div>
-        <label for="attendees" style="font-weight: bold; font-size: 0.9em;">Attendees:</label>
-        <input type="text" id="attendees" placeholder="Enter attendees' names" style="width: 100%;">
+        <label for="participants" style="font-weight: bold; font-size: 0.9em;">Participants:</label>
+        <input type="text" id="participants" placeholder="Enter participants' names" style="width: 100%;">
     </div>
 
     <div>
@@ -106,7 +106,7 @@ const dropdownHtml = `
 
         const startTime = document.getElementById('start_time').value;
         const finishTime = document.getElementById('finish_time').value;
-        const attendees = document.getElementById('attendees').value;
+        const participants = document.getElementById('participants').value;
         const serviceMode = document.getElementById('service_mode').value;
         const interpreter = document.getElementById('interpreter').value;
         const interpreterName = document.getElementById('interpreter_name').value;
@@ -115,7 +115,7 @@ const dropdownHtml = `
 __________________________________________
 Start time: ${startTime}
 Finish time: ${finishTime}
-Attendees: ${attendees}
+participants: ${participants}
 Mode of service delivery: ${serviceMode}
 Interpreter/translator used: ${interpreter}
 Interpreter name: ${interpreterName}
