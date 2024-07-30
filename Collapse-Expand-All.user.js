@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Collapse/Expand All
 // @description  Adds Collapse All/Expand All buttons to toggle list item classes
-// @namespace    Migrant Workers Centre
+// @namespace    Migrant Workers Centre
 // @match        *https://ap-southeast-2.actionstep.com/mym/asfw/workflow/action/overview/action_id/*
 // @grant        none
 // @version      0.3
