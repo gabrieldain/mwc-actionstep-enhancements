@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/*
 // @grant        none
-// @version      0.31
+// @version      0.32
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Multi-Select-Resizer.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Multi-Select-Resizer.user.js
@@ -48,13 +48,26 @@
             window.removeEventListener('mousemove', Resize, false);
             window.removeEventListener('mouseup', stopResize, false);
         }
+
+        function adjustHeight(selectElement) {
+            const optionCount = selectElement.options.length;
+            const optionHeight = selectElement.options[0].offsetHeight; // Assuming consistent option height
+            const maxHeight = optionHeight * 9; // Maximum height for 9 options
+            const calculatedHeight = Math.min(optionCount * optionHeight, maxHeight) + 6;
+            selectElement.style.height = calculatedHeight + 'px';
+        }
+
+        // Initial height adjustment
+        adjustHeight(element);
+        // Event listener for dynamic adjustments (optional)
+        element.addEventListener('change', () => {
+            adjustHeight(element);
+        });
     }
 
     // Find all multi-select elements, double their default height, and make them resizable
     const multiSelects = document.querySelectorAll('select[multiple]');
     multiSelects.forEach(element => {
-        const defaultHeight = element.offsetHeight;
-        element.style.height = (defaultHeight * 2) + 'px';
         makeResizable(element);
     });
 })();
