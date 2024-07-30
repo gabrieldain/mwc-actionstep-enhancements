@@ -4,7 +4,7 @@
 // @namespace   Migrant Workers Centre
 // @match       *ap-southeast-2.actionstep.com/*
 // @grant       none
-// @version     0.92
+// @version     0.93
 // @author      Gabriel Dain <gdain@migrantworkers.org.au>
 // ==/UserScript==
 
@@ -26,7 +26,7 @@ const dropdownHtml = `
             <input type="text" id="finish_time" placeholder="HH:MM" style="width: 70px;">
 
             <label for="attendees">Attendees:</label>
-            <input type="text" id="attendees" placeholder="List full names" style="width: 347px;">
+            <input type="text" id="attendees" placeholder="Enter attendees' names" style="width: 347px;">
         </div>
 
         <div style="display: flex; gap: 10px; margin-top: 10px;">
@@ -54,6 +54,10 @@ const dropdownHtml = `
                     <option value="Yes, other">Yes, other</option>
                 </select>
             </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
+            <label for="interpreter_name">Interpreter Name:</label>
+            <input type="text" id="interpreter_name" placeholder="Enter interpreter's name, if one was used" style="width: 100%;">
         </div>
     </div>
 `;
@@ -96,6 +100,7 @@ const dropdownHtml = `
         const attendees = document.getElementById('attendees').value;
         const serviceMode = document.getElementById('service_mode').value;
         const interpreter = document.getElementById('interpreter').value;
+        const interpreterName = document.getElementById('interpreter_name').value;
 
         const noteContent = `
 __________________________________________
@@ -104,6 +109,7 @@ Finish time: ${finishTime}
 Attendees: ${attendees}
 Mode of service delivery: ${serviceMode}
 Interpreter/translator used: ${interpreter}
+Interpreter name: ${interpreterName}
 `;
 
         const textarea = document.getElementById(textareaId);
