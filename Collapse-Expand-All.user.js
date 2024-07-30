@@ -19,6 +19,11 @@
     listItems.forEach(item => {
       item.classList.toggle('Open', !collapse);
       item.classList.toggle('Minimized', collapse);
+
+      const actionPanel = item.querySelector('.cs-action-panel__body.js-action-panel__body');
+      if (actionPanel) {
+        actionPanel.style.display = collapse ? 'none' : 'block';
+      }
     });
   }
 
