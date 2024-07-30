@@ -36,7 +36,7 @@
         message: 'Please specify the organisation that provided the referral.'
     },
     'Employer_status': {
-        targetIds: ['Termination-manner'],
+        targetIds: ['Termination-manner', 'Termination-date_description', 'Last_day_of_work_description'],
         conditions: ['I am not still employed by the employer and want advice about the end of my employment'],
         message: '',
     },
