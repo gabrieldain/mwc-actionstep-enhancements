@@ -19,49 +19,56 @@
 
     // HTML for the dropdown fields and custom button
 const dropdownHtml = `
-    <div id="fileNoteControls" style="margin-bottom: 10px; width: 100%;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <label for="start_time">Start:</label>
-            <input type="text" id="start_time" placeholder="HH:MM" style="width: 70px;">
-
-            <label for="finish_time">Finish:</label>
-            <input type="text" id="finish_time" placeholder="HH:MM" style="width: 70px;">
-
-            <label for="attendees">Attendees:</label>
-            <input type="text" id="attendees" placeholder="Enter attendees' names" style="width: 347px;">
-        </div>
-
-        <div style="display: flex; gap: 10px; margin-top: 10px;">
-            <div style="flex: 1;">
-                <label for="service_mode">Mode of service delivery:</label>
-                <select id="service_mode" style="width: 100%;">
-                    <option value="Phone in">Phone in</option>
-                    <option value="Phone out">Phone out</option>
-                    <option value="Face-to-face">Face-to-face</option>
-                    <option value="Video conference">Video conference</option>
-                    <option value="Email">Email</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-            <div style="flex: 1;">
-                <label for="interpreter">Interpreter/translator used:</label>
-                <select id="interpreter" style="width: 100%;">
-                    <option value="No, not required">No, not required</option>
-                    <option value="No, required but unavailable">No, required but unavailable</option>
-                    <option value="Yes, NAATI accredited">Yes, NAATI accredited</option>
-                    <option value="Yes, NAATI recognised">Yes, NAATI recognised</option>
-                    <option value="Yes, MWC staff">Yes, MWC staff</option>
-                    <option value="Yes, a friend or family member of the client">Yes, a friend or family member of the client</option>
-                    <option value="Yes, technological solution">Yes, technological solution</option>
-                    <option value="Yes, other">Yes, other</option>
-                </select>
-            </div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
-            <label for="interpreter_name">Interpreter Name:</label>
-            <input type="text" id="interpreter_name" placeholder="Enter interpreter's name, if one was used" style="width: 100%;">
-        </div>
+<div id="fileNoteControls" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <label for="start_time" style="font-weight: bold; font-size: 0.9em;">Start:</label>
+        <input type="text" id="start_time" placeholder="HH:MM" style="width: 70px;">
+        <label for="finish_time" style="font-weight: bold; font-size: 0.9em;">Finish:</label>
+        <input type="text" id="finish_time" placeholder="HH:MM" style="width: 70px;">
     </div>
+
+    <div>
+        <label for="attendees" style="font-weight: bold; font-size: 0.9em;">Attendees:</label>
+        <input type="text" id="attendees" placeholder="Enter attendees' names" style="width: 100%;">
+    </div>
+
+    <div>
+        <label for="interpreter" style="font-weight: bold; font-size: 0.9em;">Interpreter/translator used:</label>
+        <select id="interpreter" style="width: 100%; height: calc(1.5em + 10px); border-radius: 5px; border: 1px solid #d1d1d1; color: #8395a0;">
+            <option value="No, not required">No, not required</option>
+            <option value="No, required but unavailable">No, required but unavailable</option>
+            <option value="Yes, NAATI accredited">Yes, NAATI accredited</option>
+            <option value="Yes, NAATI recognised">Yes, NAATI recognised</option>
+            <option value="Yes, MWC staff">Yes, MWC staff</option>
+            <option value="Yes, a friend or family member of the client">Yes, a friend or family member of the client</option>
+            <option value="Yes, technological solution">Yes, technological solution</option>
+            <option value="Yes, other">Yes, other</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="service_mode" style="font-weight: bold; font-size: 0.9em;">Mode of service delivery:</label>
+        <select id="service_mode" style="width: 100%; height: calc(1.5em + 10px); border-radius: 5px; border: 1px solid #d1d1d1; color: #8395a0;">
+            <option value="Phone in">Phone in</option>
+            <option value="Phone out">Phone out</option>
+            <option value="Face-to-face">Face-to-face</option>
+            <option value="Video conference">Video conference</option>
+            <option value="Email">Email</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="interpreter_name" style="font-weight: bold; font-size: 0.9em; display: block; margin-bottom: 5px;">Interpreter name:</label>
+        <input type="text" id="interpreter_name" placeholder="Enter interpreter's name, if one was used" style="width: 100%;">
+    </div>
+    <div>
+        <label for="spacer" style="font-weight: bold; font-size: 0.9em; display: block; margin-bottom: 5px;"></label>
+    </div>
+    <div>
+        <label for="file_note" style="font-weight: bold; font-size: 0.9em; display: block; margin-bottom: 0px;">File note:</label>
+    </div>
+</div>
 `;
 
     // Function to insert dropdown HTML and replace the save button
