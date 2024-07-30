@@ -1,11 +1,13 @@
 // ==UserScript==
-// @name        Autofill File Note Template
-// @description "Adds dropdown fields and a custom save button to append data and submit the file note field on ActionStep."
-// @namespace   Migrant Workers Centre
-// @match       *ap-southeast-2.actionstep.com/*
-// @grant       none
-// @version     0.93
-// @author      Gabriel Dain <gdain@migrantworkers.org.au>
+// @name         Autofill File Note Template
+// @description  "Adds dropdown fields and a custom save button to append data and submit the file note field on ActionStep."
+// @namespace    Migrant Workers Centre
+// @match        *ap-southeast-2.actionstep.com/*
+// @grant        none
+// @version      0.931
+// @author       Gabriel Dain <gdain@migrantworkers.org.au>
+// @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Autofill-File-Note-Template.user.js
+// @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Autofill-File-Note-Template.user.js
 // ==/UserScript==
 
 (function() {
