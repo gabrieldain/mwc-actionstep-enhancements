@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         Highlight Text Based on Dropdown Selection
 // @namespace    Migrant Workers Centre
-// @version      0.9
+// @version      0.91
 // @description  Highlight text based on dropdown selection
 // @match        *ap-southeast-2.actionstep.com/*
 // @grant        none
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
+// @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Highlight-Text-Based-on-Dropdown-Selection.user.js
+// @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Highlight-Text-Based-on-Dropdown-Selection.user.js
 // ==/UserScript==
 
 (function() {
