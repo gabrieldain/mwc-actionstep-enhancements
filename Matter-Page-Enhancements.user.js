@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.31
+// @version      0.4
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -13,6 +13,7 @@
 (function() {
     'use strict';
 
+    // 1. HIDE UNNECESSARY MENU ITEMS AND ADD LABELS
     // Configuration for hiding menu items
     const config = {
         home: false,
@@ -98,6 +99,14 @@
         }
     }
 
+    // Run processMenuItems function multiple times
+    function runMultipleTimes(times = 5) {
+        for (let i = 0; i < times; i++) {
+            setTimeout(processMenuItems, i * 1000);
+        }
+    }
+
+    // 2. ADD EXPAND/COLLAPSE ALL TOGGLE BUTTONS
     // Function to toggle the class of all list items
     function toggleListItems(collapse) {
         const listItems = document.querySelectorAll('.SortableList li');
@@ -160,13 +169,7 @@
         }
     }
 
-    // Run processMenuItems function multiple times
-    function runMultipleTimes(times = 5) {
-        for (let i = 0; i < times; i++) {
-            setTimeout(processMenuItems, i * 1000);
-        }
-    }
-
+    // 3. HIGHLIGHT EXPIRED LIMITATION DATES
     function formatPastDates() {
         const dateContainers = document.querySelectorAll('.Row');
         dateContainers.forEach(container => {
@@ -188,7 +191,104 @@
         });
     }
 
-    // Run the functions when the page is loaded
+    // 4. PRINT RELEVANT CONTACT INFO ON MATTER PAGE
+    // Find the URL in the current page
+    const participantDetailsDiv = document.querySelector('.ParticipantDetails');
+    if (participantDetailsDiv) {
+        const links = participantDetailsDiv.querySelectorAll('a[href]');
+        let targetUrl = null;
+        links.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href.includes('/mym/asfw/participant-classic/overview/participant_id/')) {
+                targetUrl = href;
+            }
+        });
+
+        if (targetUrl) {
+            // Extract the participant ID
+            const idMatch = targetUrl.match(/\/participant_id\/(\d+)/);
+        const participantId = idMatch ? idMatch[1] : null;
+
+            if (participantId) {
+                // Construct the new URL to access custom data
+                const newUrl = `https://ap-southeast-2.actionstep.com/mym/asfw/participant-edit/edit/participant_id/${participantId}`;
+
+                // Navigate to the new URL and fetch data
+                fetch(newUrl).then(response => response.text()).then(data => {
+                    // Parse the response to access the fieldset
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+                    const fieldset = doc.querySelector('#fieldset-custom_data_20');
+
+                    // Check if fieldset exists and extract specific data
+                    if (fieldset) {
+                        const filteredDataPairs = [];
+                        const fieldLabels = fieldset.querySelectorAll('label');
+                        const fieldValues = fieldset.querySelectorAll('select, input[type="text"], textarea');
+
+                        if (fieldLabels.length === fieldValues.length) {
+                            for (let i = 0; i < fieldLabels.length; i++) {
+                                const labelText = fieldLabels[i].innerText.trim().toLowerCase();
+                                const value = fieldValues[i].value.trim();
+
+                                // Filter desired fields
+                                if (labelText.includes('interpretation') ||
+                                    labelText.includes('preferred pronouns') ||
+                                    labelText.includes('language_spoken_at_home') ||
+                                    labelText.includes('other names')) {
+                                    filteredDataPairs.push(`${labelText}: ${value}`);
+                                }
+                            }
+                        } else {
+                            console.error('Error: Mismatch between labels and values');
+                        }
+
+                        // Print filtered data at the end of the DetailsWrapper container
+                        if (filteredDataPairs.length > 0) {
+                            const outputDiv = document.createElement('div');
+                            outputDiv.style.fontSize = '13px';
+                            outputDiv.style.color = '#666';
+
+                            let outputText = '';
+
+                            filteredDataPairs.forEach(pair => {
+                                const [label, value] = pair.split(': ');
+                                const lowerLabel = label.toLowerCase();
+
+                                if (lowerLabel === 'interpretation' && value === 'Interpreter needed') {
+                                    const languageField = filteredDataPairs.find(p => p.startsWith('language_spoken_at_home:'));
+                                    const language = languageField ? languageField.split(': ')[1] : '';
+                                    outputText += `<b>Interpreter needed:</b> ${language}<br>`;
+                                } else if (lowerLabel === 'other names, variations, and spellings') {
+                                    outputText += `<b>Other names:</b> ${value}<br>`;
+                                } else if (lowerLabel === 'preferred pronouns') {
+                                    outputText += `<b>${value}<br></b>`;
+                                }
+                            });
+
+                            outputDiv.innerHTML = outputText;
+                            const detailsWrapper = document.querySelector('.DetailsWrapper');
+                            if (detailsWrapper) {
+                                detailsWrapper.appendChild(outputDiv);
+                            } else {
+                                console.warn('DetailsWrapper not found');
+                            }
+                          const styleElement = document.createElement('style');
+                            styleElement.textContent = '.ActionHeader .DetailsFrame .DetailsWrapper { padding-bottom: 0px; }';
+                            document.head.appendChild(styleElement);
+                        } else {
+                            console.info('No matching custom data found');
+                        }
+                    } else {
+                        console.warn('Fieldset #fieldset-custom_data_20 not found');
+                    }
+                });
+            } else {
+                console.error('Participant ID not found in URL');
+            }
+        }
+    }
+    // RUN THE FUNCTIONS WHEN THE PAGE IS LOADED
     window.addEventListener('load', () => {
         runMultipleTimes();
         createCollapseExpandButtons();
