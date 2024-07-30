@@ -2,9 +2,9 @@
 // @name         Matter Page Enhancements
 // @description  Enhances Actionstep matter pages with various features
 // @namespace    Migrant Workers Centre
-// @match        *https://ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
+// @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.1
+// @version      0.2
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
