@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *https://ap-southeast-2.actionstep.com/mym/asfw/workflow/action/overview/action_id/*
 // @grant        none
-// @version      0.3
+// @version      0.31
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Collapse-Expand-All.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Collapse-Expand-All.user.js
