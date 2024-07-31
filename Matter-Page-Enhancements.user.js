@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.41
+// @version      0.42
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -255,6 +255,10 @@
 
                             let outputText = '';
 
+                            if (postcode) {
+                                outputText += `<b>Postcode:</b> <span id="postcode">${postcode}</span><br>`;
+                            }
+
                             filteredDataPairs.forEach(pair => {
                                 const [label, value] = pair.split(': ');
                                 const lowerLabel = label.toLowerCase();
@@ -263,13 +267,12 @@
                                     const languageField = filteredDataPairs.find(p => p.startsWith('language_spoken_at_home:'));
                                     const language = languageField ? languageField.split(': ')[1] : '';
                                     outputText += `<b>Interpreter needed:</b> ${language}<br>`;
-                                } else if (postcode) {
-                                    outputText += `<b>Postcode:</b> ${postcode}<br>`;
                                 } else if (lowerLabel === 'other names, variations, and spellings') {
                                     outputText += `<b>Other names:</b> ${value}<br>`;
                                 } else if (lowerLabel === 'preferred pronouns') {
                                     outputText += `<b>${value}<br></b>`;
                                 }
+
                             });
 
                             outputDiv.innerHTML = outputText;
