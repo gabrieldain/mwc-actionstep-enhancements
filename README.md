@@ -56,14 +56,13 @@ To edit the conditions and target fields:
   ```
 - **Multiple Conditions**: You can specify multiple conditions by listing them in the conditions array. The field will highlight if any of the conditions are met.
   ```javascript
-  Copy code
   'Employer_status': {
       targetIds: ['Termination-manner', 'Termination-date_description', 'Last_day_of_work_description'],
       conditions: ['I am not still employed by the employer and want advice about the end of my employment', 'I am on leave'],
       message: ''
   },
   ```
-- **Negative Conditions**: To specify a negative condition, prefix the condition with !. This will highlight the target fields when the specified condition is not met.
+- **Negative Conditions**: To specify a negative condition, prefix the condition with `!`. This will highlight the target fields when the specified condition is not met.
   ```javascript
   'Disadvantage_indicators-disability': {
       targetIds: ['Disadvantage_indicators-disability_type'],
@@ -71,7 +70,7 @@ To edit the conditions and target fields:
       message: ''
   },
   ```
-  - **Wildcard Conditions**: Use '*' as a wildcard in conditions to match any text.
+- **Wildcard Conditions**: Use `*` as a wildcard in conditions to match any text.
   ```javascript
   'Issue_type': {
       targetIds: ['Injury-reported_to_employer', 'Injury-doctor_or_health_professional', 'Injury-certificate_of_capacity'],
