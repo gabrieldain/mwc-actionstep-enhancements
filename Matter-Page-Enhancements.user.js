@@ -242,9 +242,13 @@
                         } else {
                             console.error('Error: Mismatch between labels and values');
                         }
-
+                        
+                        // Get postcode
+                        const postcodeInput = doc.querySelector('input[name="post_code"]');
+                        const postcode = postcodeInput ? postcodeInput.value.trim() : '';
+                        
                         // Print filtered data at the end of the DetailsWrapper container
-                        if (filteredDataPairs.length > 0) {
+                        if (filteredDataPairs.length > 0 || postcode) {
                             const outputDiv = document.createElement('div');
                             outputDiv.style.fontSize = '13px';
                             outputDiv.style.color = '#666';
@@ -259,6 +263,8 @@
                                     const languageField = filteredDataPairs.find(p => p.startsWith('language_spoken_at_home:'));
                                     const language = languageField ? languageField.split(': ')[1] : '';
                                     outputText += `<b>Interpreter needed:</b> ${language}<br>`;
+                                } else if (postcode) {
+                                    outputText += `<b>Postcode:</b> ${postcode}<br>`;
                                 } else if (lowerLabel === 'other names, variations, and spellings') {
                                     outputText += `<b>Other names:</b> ${value}<br>`;
                                 } else if (lowerLabel === 'preferred pronouns') {
