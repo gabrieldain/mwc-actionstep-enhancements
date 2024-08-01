@@ -44,9 +44,8 @@ To edit the conditions and target fields:
 1. Modify the `fieldMap` object within the script.
 2. Each entry in `fieldMap` specifies the field to watch, the conditions, and the target fields to highlight.
 
-#### FieldMap Configuration
-
-#### Multiple Target Fields:
+#### FieldMap entries
+##### Multiple Target Fields:
 You can specify multiple fields to be highlighted by listing their IDs in the `targetIds` array.
   ```javascript
   'Source': {
@@ -55,16 +54,16 @@ You can specify multiple fields to be highlighted by listing their IDs in the `t
       message: 'Please specify the organisation that provided the referral and provide contact details.'
   },
   ```
-#### Multiple Conditions
+##### Multiple Conditions
 You can specify multiple conditions by listing them in the `conditions` array. The field will highlight if any of the conditions are met.
   ```javascript
   'Employer_status': {
-      targetIds: ['Termination-manner', 'Termination-date_description', 'Last_day_of_work_description'],
+      targetIds: ['Termination-manner'],
       conditions: ['I am not still employed by the employer and want advice about the end of my employment', 'I am on leave'],
       message: ''
   },
   ```
-#### Negative Conditions
+##### Negative Conditions
 To specify a negative condition, prefix the condition with `!`. This will highlight the target fields when the specified condition is *not* met.
   ```javascript
   'Disadvantage_indicators-disability': {
@@ -73,7 +72,7 @@ To specify a negative condition, prefix the condition with `!`. This will highli
       message: ''
   },
   ```
-#### Wildcard Conditions
+##### Wildcard Conditions
 Use `*` as a wildcard in conditions to match any text.
   ```javascript
   'Issue_type': {
@@ -82,6 +81,7 @@ Use `*` as a wildcard in conditions to match any text.
       message: ''
   },
   ```
+
 ## Matter Page Enhancements
 
 ### Description
