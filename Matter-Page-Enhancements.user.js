@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.42
+// @version      0.43
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -172,6 +172,7 @@
     // 3. HIGHLIGHT EXPIRED LIMITATION DATES
     function formatPastDates() {
         const dateContainers = document.querySelectorAll('.Row');
+        let expiredFound = false;
         dateContainers.forEach(container => {
             const dt = container.querySelector('dt');
             const dd = container.querySelector('dd');
@@ -183,12 +184,23 @@
                     const date = new Date(dateStr);
                     const now = new Date();
                     if (date < now) {
+                        expiredFound = true;
                         const newContent = dd.innerHTML.replace(dateStr, `<span style="font-weight: bold; color: red;">${dateStr} [EXPIRED]</span>`);
                         dd.innerHTML = newContent;
                     }
                 }
             }
         });
+
+        // Highlight the "Limitation and critical dates" panel title also
+        if (expiredFound) {
+            const headings = document.querySelectorAll('h2.mbn.as-epsilon');
+            headings.forEach(heading => {
+                if (heading.textContent.includes('Limitation and critical dates')) {
+                    heading.style.cssText = 'color: red !important;';
+                }
+            });
+        }
     }
 
     // 4. PRINT RELEVANT CONTACT INFO ON MATTER PAGE
