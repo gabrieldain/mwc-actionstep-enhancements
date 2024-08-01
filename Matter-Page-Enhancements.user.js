@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.43
+// @version      0.44
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -203,7 +203,42 @@
         }
     }
 
-    // 4. PRINT RELEVANT CONTACT INFO ON MATTER PAGE
+    // 4. HIGHLIGHT "Completed, conflicts discovered" TEXT AND CHANGE HEADING COLOUR
+    function highlightConflictText() {
+        const rows = document.querySelectorAll('.Row');
+        let conflictFound = false;
+        let noConflictFound = false;
+
+        rows.forEach(row => {
+            const dd = row.querySelector('dd');
+            if (dd.textContent.trim() === 'Completed, conflicts discovered') {
+                conflictFound = true;
+                dd.innerHTML = '<span style="font-weight: bold; color: red;">Completed, conflicts discovered</span>';
+            } else if (dd.textContent.trim() === 'Completed, no conflicts discovered') {
+                noConflictFound = true;
+                dd.innerHTML = '<span style="font-weight: bold; color: green;">Completed, no conflicts discovered</span>';
+            } else if (dd.textContent.trim() === 'Exempt') {
+                noConflictFound = true;
+                dd.innerHTML = '<span style="font-weight: bold; color: green;">Exempt</span>';
+            }
+        });
+
+        if (conflictFound || noConflictFound) {
+            const headings = document.querySelectorAll('h2.mbn.as-epsilon');
+            headings.forEach(heading => {
+                if (heading.textContent.includes('Conflict checks')) {
+                    if (conflictFound) {
+                        heading.style.cssText = 'color: red !important;';
+                        return; // Exit if conflict is found, no further checks
+                    } else if (noConflictFound) {
+                        heading.style.cssText = 'color: green !important;';
+                    }
+                }
+            });
+        }
+    }
+
+    // 5. PRINT RELEVANT CONTACT INFO ON MATTER PAGE
     // Find the URL in the current page
     const participantDetailsDiv = document.querySelector('.ParticipantDetails');
     if (participantDetailsDiv) {
@@ -314,6 +349,7 @@
         runMultipleTimes();
         createCollapseExpandButtons();
         formatPastDates();
+        highlightConflictText();
     });
 
     // Also run immediately in case the page has already loaded
