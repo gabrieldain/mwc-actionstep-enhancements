@@ -46,7 +46,8 @@ To edit the conditions and target fields:
 
 #### FieldMap Configuration
 
-- **Multiple Target Fields:** You can specify multiple fields to be highlighted by listing their IDs in the `targetIds` array.
+#### Multiple Target Fields:
+You can specify multiple fields to be highlighted by listing their IDs in the `targetIds` array.
   ```javascript
   'Source': {
       targetIds: ['Source_name', 'Source_details'],
@@ -54,7 +55,8 @@ To edit the conditions and target fields:
       message: 'Please specify the organisation that provided the referral and provide contact details.'
   },
   ```
-- **Multiple Conditions**: You can specify multiple conditions by listing them in the conditions array. The field will highlight if any of the conditions are met.
+#### Multiple Conditions
+You can specify multiple conditions by listing them in the `conditions` array. The field will highlight if any of the conditions are met.
   ```javascript
   'Employer_status': {
       targetIds: ['Termination-manner', 'Termination-date_description', 'Last_day_of_work_description'],
@@ -62,7 +64,8 @@ To edit the conditions and target fields:
       message: ''
   },
   ```
-- **Negative Conditions**: To specify a negative condition, prefix the condition with `!`. This will highlight the target fields when the specified condition is not met.
+#### Negative Conditions
+To specify a negative condition, prefix the condition with `!`. This will highlight the target fields when the specified condition is *not* met.
   ```javascript
   'Disadvantage_indicators-disability': {
       targetIds: ['Disadvantage_indicators-disability_type'],
@@ -70,7 +73,8 @@ To edit the conditions and target fields:
       message: ''
   },
   ```
-- **Wildcard Conditions**: Use `*` as a wildcard in conditions to match any text.
+#### Wildcard Conditions
+Use `*` as a wildcard in conditions to match any text.
   ```javascript
   'Issue_type': {
       targetIds: ['Injury-reported_to_employer', 'Injury-doctor_or_health_professional', 'Injury-certificate_of_capacity'],
@@ -81,10 +85,10 @@ To edit the conditions and target fields:
 ## Matter Page Enhancements
 
 ### Description
-This script enhances the matter pages on ActionStep with various features.
+This script enhances the matter home page on ActionStep with various features.
 
 ### Features
-- Hides unnecessary menu items based on a configuration.
+- Hides unnecessary menu items (configurable).
 - Adds labels below menu items.
 - Provides expand/collapse all toggle buttons for list items.
 - Highlights expired limitation dates.
