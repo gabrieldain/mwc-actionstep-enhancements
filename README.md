@@ -92,6 +92,7 @@ This script enhances the matter home page on ActionStep with various features.
 - Adds labels below menu items.
 - Provides expand/collapse all toggle buttons for list items.
 - Highlights expired limitation dates.
+- Highlights conflict status.
 - Prints relevant contact info on the matter page.
 
 ### Usage
