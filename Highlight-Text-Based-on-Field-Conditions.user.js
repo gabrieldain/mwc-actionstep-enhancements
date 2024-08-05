@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Highlight Field Based on Field Conditions
 // @namespace    Migrant Workers Centre
-// @version      0.95c
+// @version      0.95d
 // @description  Highlight Field Based on Field Conditions
 // @match        *ap-southeast-2.actionstep.com/*
 // @grant        none
@@ -14,6 +14,11 @@
   'use strict';
 
   const fieldMap = {
+    'Visa': {
+        targetIds: ['Visa_detail'],
+        conditions: ['*bridging*'],
+        message: '',
+    },
     'Disadvantage_indicators-has_dependants': {
         targetIds: ['Disadvantage_indicators-number_of_dependants'],
         conditions: ['checked'],
