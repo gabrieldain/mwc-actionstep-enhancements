@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.45c
+// @version      0.45d
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -281,8 +281,7 @@
                                 // Filter desired fields
                                 if (labelText.includes('interpretation') ||
                                     labelText.includes('preferred pronouns') ||
-                                    labelText.includes('other names') ||
-                                    labelText.includes('visa')) {
+                                    labelText.includes('other names')) {
                                     filteredDataPairs.push(`${labelText}: ${value}`);
                                 }
                             }
@@ -316,8 +315,6 @@
                                     outputText += `<b>Other names:</b> ${value}<br>`;
                                 } else if (lowerLabel === 'preferred pronouns') {
                                     outputText += `<b>${value}<br></b>`;
-                                } else if (lowerLabel === 'visa') {
-                                    outputText += `<b>Visa: </b>${value}<br>`;
                                 }
 
                             });
