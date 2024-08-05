@@ -26,61 +26,62 @@ This script adds custom fields to the file note editor based on the MWC file not
 ### Configuration
 To edit the fields available, modify the `dropdownHtml` string within the script.
 
-## Highlight Text Based on Field Conditions
+## Hide and Highlight Fields based on Conditions
 
 ### Description
-This script highlights specific fields in the 'Intake data' editing page based on the content of other fields, to support intake interactions with prospective clients.
+This script hides specific fields based on conditions and highlights fields in the 'Intake data' editing page based on the content of other fields, to support intake interactions with prospective clients.
 
 ### Features
+- Hides fields when certain conditions are not met (activated by clicking "Hide empty").
 - Highlights fields when certain conditions are met (e.g., when a checkbox is checked or a specific option is selected).
 - Displays custom messages next to highlighted fields.
+- Automatically shows fields when conditions are met.
 
 ### Usage
-1. Navigate to a matter's 'Intake data" editing page.
-2. Fields will automatically highlight based on predefined conditions.
+1. Navigate to a matter's 'Intake data' editing page.
+2. Click the "Hide empty" button to hide fields that do not meet conditions.
+3. Fields will automatically highlight and show based on predefined conditions.
 
 ### Configuration
-To edit the conditions and target fields:
-1. Modify the `fieldMap` object within the script.
-2. Each entry in `fieldMap` specifies the field to watch, the conditions, and the target fields to highlight.
+To edit the conditions and fields affected, modify the `hideFieldNames` array and `highlightConditionsMap` object within the script.
 
-#### FieldMap entries
-##### Multiple Target Fields:
-You can specify multiple fields to be highlighted by listing their IDs in the `targetIds` array.
+#### Example Configurations:
+##### Hiding Fields
+Specify fields to be hidden. These fields will be hidden when they are empty and not being highlighted.
+```javascript
+const hideFieldNames = [
+    "Visa_detail",
+    "Source_name",
+    // add other field names here
+];
+```
+##### Highlighting fields
   ```javascript
-  'Source': {
-      targetIds: ['Source_name', 'Source_details'],
-      conditions: ['I was referred by another organisation'],
-      message: 'Please specify the organisation that provided the referral and provide contact details.'
-  },
-  ```
-##### Multiple Conditions
-You can specify multiple conditions by listing them in the `conditions` array. The field will highlight if any of the conditions are met.
-  ```javascript
-  'Employer_status': {
-      targetIds: ['Termination-manner'],
-      conditions: ['I am not still employed by the employer and want advice about the end of my employment', 'I am on leave'],
-      message: ''
-  },
-  ```
-##### Negative Conditions
-To specify a negative condition, prefix the condition with `!`. This will highlight the target fields when the specified condition is *not* met.
-  ```javascript
+  const highlightConditionsMap = {
+    'Visa': {
+      targetIds: ['Visa_detail'],
+      conditions: ['*bridging*', '*other*'], // multiple conditions
+      message: 'Ask about substantive visa', // message
+    },
   'Disadvantage_indicators-disability': {
-      targetIds: ['Disadvantage_indicators-disability_type'],
-      conditions: ['!checked'],
-      message: ''
+    targetIds: ['Disadvantage_indicators-disability_type'],
+    conditions: ['!checked'], // negative condition
+    message: ''
   },
-  ```
-##### Wildcard Conditions
-Use `*` as a wildcard in conditions to match any text.
-  ```javascript
-  'Issue_type': {
-      targetIds: ['Injury-reported_to_employer', 'Injury-doctor_or_health_professional', 'Injury-certificate_of_capacity'],
-      conditions: ['I was injured*'],
-      message: ''
+  'Employer_status': {
+    targetIds: ['Termination-manner', 'Termination-date_description', 'Last_day_of_work_description'], // multiple targetIds
+    conditions: ['*not still employed*'], // wildcard condition
+    message: '',
   },
+    // add other conditions here
+  };
   ```
+##### Condition types
+- Positive Conditions: Specify conditions that must be met for fields to be highlighted and shown.
+- Negative Conditions: Prefix the condition with `!` to highlight fields when the specified condition is not met.
+- Wildcard Conditions: Use `*` as a wildcard in conditions to match any text.
+- Multiple Conditions: Specify multiple conditions by listing them in the `conditions` array. The field will highlight if any of the conditions are met.
+- Multiple Targets: Specify multiple target fields by listing them in the `targetIds` array.
 
 ## Matter Page Enhancements
 
