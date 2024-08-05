@@ -281,7 +281,6 @@
                                 // Filter desired fields
                                 if (labelText.includes('interpretation') ||
                                     labelText.includes('preferred pronouns') ||
-                                    labelText.includes('language_spoken_at_home') ||
                                     labelText.includes('other names')) {
                                     filteredDataPairs.push(`${labelText}: ${value}`);
                                 }
@@ -311,9 +310,7 @@
                                 const lowerLabel = label.toLowerCase();
 
                                 if (lowerLabel === 'interpretation' && value === 'Interpreter needed') {
-                                    const languageField = filteredDataPairs.find(p => p.startsWith('language_spoken_at_home:'));
-                                    const language = languageField ? languageField.split(': ')[1] : '';
-                                    outputText += `<b>Interpreter needed:</b> ${language}<br>`;
+                                    outputText += `<b>Interpreter needed.</b><br>`;
                                 } else if (lowerLabel === 'other names, variations, and spellings') {
                                     outputText += `<b>Other names:</b> ${value}<br>`;
                                 } else if (lowerLabel === 'preferred pronouns') {
