@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.45
+// @version      0.45a
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -310,7 +310,7 @@
                                 const lowerLabel = label.toLowerCase();
 
                                 if (lowerLabel === 'interpretation' && value === 'Interpreter needed') {
-                                    outputText += `<b>Interpreter needed.</b><br>`;
+                                    outputText += `<b>Interpreter needed</b><br>`;
                                 } else if (lowerLabel === 'other names, variations, and spellings') {
                                     outputText += `<b>Other names:</b> ${value}<br>`;
                                 } else if (lowerLabel === 'preferred pronouns') {
