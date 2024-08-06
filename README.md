@@ -1,6 +1,6 @@
-# MWC ActionStep Enhancements suite
+# MWC Actionstep Enhancements suite
 
-This repository contains UserScripts designed to enhance the functionality and user experience of the ActionStep platform at the Migrant Workers Centre. Each script provides specific features to improve efficiency and usability. Below are detailed descriptions and usage instructions for each script.
+This repository contains UserScripts designed to enhance the functionality and user experience of the Actionstep platform at the Migrant Workers Centre. Each script provides specific features to improve efficiency and usability. Below are detailed descriptions and usage instructions for each script.
 
 ## Table of Contents
 - [Autofill File Note Template](#autofill-file-note-template)
@@ -19,7 +19,7 @@ This script adds custom fields to the file note editor based on the MWC file not
 - Replaces the default save button with a custom button that appends the data and submits the form.
 
 ### Configuration & usage
-1. Navigate to the file note section in ActionStep.
+1. Navigate to the file note section in Actionstep.
 2. Use the provided dropdowns and fields to enter relevant details.
 3. Click the custom "Save and Submit" button to append the details to the file note and submit the form.
 
@@ -86,7 +86,7 @@ const hideFieldNames = [
 ## Matter Page Enhancements
 
 ### Description
-This script enhances the matter home page on ActionStep with various features.
+This script enhances the matter home page on Actionstep with various features.
 
 ### Features
 - Hides unnecessary menu items (configurable).
@@ -98,7 +98,7 @@ This script enhances the matter home page on ActionStep with various features.
 
 ### Usage
 1. Install the script in your UserScript manager.
-2. Navigate to a matter page in ActionStep.
+2. Navigate to a matter page in Actionstep.
 3. Use the provided buttons and observe the enhancements.
 
 ### Configuration
@@ -107,12 +107,12 @@ To edit which menu items are hidden or labelled, modify the `config` object with
 ## Multi-Select Resizer
 
 ### Description
-This script adds drag-and-drop resize functionality to multi-select elements and doubles their default height in ActionStep.
+This script adds drag-and-drop resize functionality to multi-select elements and doubles their default height in Actionstep.
 
 ### Features
 - Allows multi-select elements to be resized via a draggable corner.
 - Doubles the default height of multi-select elements to improve readability.
 
 ### Usage
-1. Navigate to a form with multi-select elements in ActionStep.
+1. Navigate to a form with multi-select elements in Actionstep.
 2. Drag the corner of a multi-select element to resize it.
