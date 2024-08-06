@@ -116,3 +116,6 @@ This script adds drag-and-drop resize functionality to multi-select elements and
 ### Usage
 1. Navigate to a form with multi-select elements in Actionstep.
 2. Drag the corner of a multi-select element to resize it.
+
+### License
+This work is licensed under [https://creativecommons.org/licenses/by-sa/4.0/](CC BY-SA 4.0).
