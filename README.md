@@ -69,7 +69,7 @@ const hideFieldNames = [
     message: ''
   },
   'Employer_status': {
-    targetIds: ['Termination-manner', 'Termination-date_description', 'Last_day_of_work_description'], // multiple targetIds
+    targetIds: ['Termination-manner', 'Last_day_of_work_description'], // multiple targetIds
     conditions: ['*not still employed*'], // wildcard condition
     message: '',
   },
