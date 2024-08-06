@@ -118,4 +118,4 @@ This script adds drag-and-drop resize functionality to multi-select elements and
 2. Drag the corner of a multi-select element to resize it.
 
 ### License
-This work is licensed under [https://creativecommons.org/licenses/by-sa/4.0/](CC BY-SA 4.0).
+This work is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
