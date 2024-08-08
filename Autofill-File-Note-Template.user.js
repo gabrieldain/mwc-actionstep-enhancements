@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/*
 // @grant        none
-// @version      0.933
+// @version      0.94
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Autofill-File-Note-Template.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Autofill-File-Note-Template.user.js
@@ -111,15 +111,28 @@ const dropdownHtml = `
         const interpreter = document.getElementById('interpreter').value;
         const interpreterName = document.getElementById('interpreter_name').value;
 
-        const noteContent = `
-__________________________________________
-Start time: ${startTime}
-Finish time: ${finishTime}
-participants: ${participants}
-Mode of service delivery: ${serviceMode}
-Interpreter/translator used: ${interpreter}
-Interpreter name: ${interpreterName}
-`;
+        let noteContent = ``;
+        if (startTime || finishTime || participants || serviceMode || interpreter || interpreterName) {
+            noteContent = `\n__________________________________________`;
+        }
+        if (startTime) {
+            noteContent += `\nStart time: ${startTime}`;
+        }
+        if (finishTime) {
+            noteContent += `\nFinish time: ${finishTime}`;
+        }
+        if (participants) {
+            noteContent += `\nParticipants: ${participants}`;
+        }
+        if (serviceMode) {
+            noteContent += `\nMode of service delivery: ${serviceMode}`;
+        }
+        if (interpreter) {
+            noteContent += `\nInterpreter/translator used: ${interpreter}`;
+        }
+        if (interpreterName) {
+            noteContent += `\nInterpreter name: ${interpreterName}`;
+        }
 
         const textarea = document.getElementById(textareaId);
         if (textarea) {
