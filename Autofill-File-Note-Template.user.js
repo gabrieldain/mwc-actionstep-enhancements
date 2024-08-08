@@ -35,6 +35,7 @@ const dropdownHtml = `
     <div>
         <label for="interpreter" style="font-weight: bold; font-size: 0.9em;">Interpreter/translator used:</label>
         <select id="interpreter" style="width: 100%; height: calc(1.5em + 10px); border-radius: 5px; border: 1px solid #d1d1d1; color: #8395a0;">
+            <option value=""></option>
             <option value="No, not required">No, not required</option>
             <option value="No, required but unavailable">No, required but unavailable</option>
             <option value="Yes, NAATI accredited">Yes, NAATI accredited</option>
@@ -49,6 +50,7 @@ const dropdownHtml = `
     <div>
         <label for="service_mode" style="font-weight: bold; font-size: 0.9em;">Mode of service delivery:</label>
         <select id="service_mode" style="width: 100%; height: calc(1.5em + 10px); border-radius: 5px; border: 1px solid #d1d1d1; color: #8395a0;">
+            <option value=""></option>
             <option value="Phone in">Phone in</option>
             <option value="Phone out">Phone out</option>
             <option value="Face-to-face">Face-to-face</option>
