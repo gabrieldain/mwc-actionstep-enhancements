@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide and Highlight Fields based on Conditions
 // @namespace    Migrant Workers Centre
-// @version      1.4
+// @version      1.5
 // @description  Hide specific fields based on conditions and highlight fields based on other field conditions
 // @match        *ap-southeast-2.actionstep.com/*
 // @grant        none
@@ -14,7 +14,7 @@
     'use strict';
 
     const hideFieldNames = [
-        "Visa_detail",
+        "Substantive_visa",
         "Disadvantage_indicators-only_income_earner",
         "Disadvantage_indicators-has_dependants",
         "Disadvantage_indicators-number_of_dependants",
@@ -22,22 +22,24 @@
         "Disadvantage_indicators-unemployed",
         "Disadvantage_indicators-centrelink",
         "Disadvantage_indicators-centrelink_type",
-        "Disadvantage_indicators-Homelessness",
+        "Disadvantage_indicators-homelessness",
         "Disadvantage_indicators-disability_type[]",
         "Disadvantage_indicators-disability",
         "Disadvantage_indicators-family_violence",
-        "Disadvantage_indicators-ATSI",
+        "Disadvantage_indicators-Aboriginal",
+        "Disadvantage_indicators-Torres_Strait_Islander",
         "Disadvantage_indicators-LGBTQIA",
         "Source_name",
         "Existing_legal_claims_detail",
         "Past_legal_assistance_detail",
         "Past_union_assistance",
         "Past_union_assistance_detail",
+        "Industry_other",
     ];
 
     const highlightConditionsMap = {
         'Visa': {
-            targetIds: ['Visa_detail'],
+            targetIds: ['Substantive_visa'],
             conditions: ['*bridging*'],
             message: '',
         },
@@ -64,11 +66,6 @@
         'Employer_status': {
             targetIds: ['Termination-manner', 'Termination-date_description', 'Last_day_of_work_description'],
             conditions: ['I am not still employed by the employer and want advice about the end of my employment'],
-            message: '',
-        },
-        'Issue_type': {
-            targetIds: ['Injury-reported_to_employer', 'Injury-doctor_or_health_professional', 'Injury-certificate_of_capacity', 'Injury-date_noticed_description', 'Injury-date_occurred_description'],
-            conditions: ['I was injured at work/my work has made me unwell'],
             message: '',
         },
         'Ideal_outcome': {
@@ -99,6 +96,11 @@
         'Past_union_assistance': {
             targetIds: ['Past_union_assistance_detail'],
             conditions: ['Yes'],
+            message: '',
+        },
+        'Industry': {
+            targetIds: ['Industry_other'],
+            conditions: ['Other'],
             message: '',
         },
         'Other_parties': {
