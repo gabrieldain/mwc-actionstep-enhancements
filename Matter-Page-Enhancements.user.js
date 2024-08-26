@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.48
+// @version      0.49
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -178,12 +178,13 @@
         headings.forEach(heading => {
             // Check if the heading text matches "Limitation and critical dates"
             if (heading.textContent.includes('Limitation and critical dates')) {
+                console.log(heading);
                 // Assuming the relevant content is within a parent container of this heading
                 const container = heading.closest('.Panel.xcs-action-panel.js-action-panel.ActionDataCollectionMultiRecord');
 
                 if(container) {
                     // Find all rows within this specific container
-                    const dateContainers = document.querySelectorAll('.Row');
+                    const dateContainers = container.querySelectorAll('.Row');
             
                     dateContainers.forEach(container => {
                         const dt = container.querySelector('dt');
