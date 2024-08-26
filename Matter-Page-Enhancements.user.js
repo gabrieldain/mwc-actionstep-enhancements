@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.47
+// @version      0.48
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -171,41 +171,46 @@
 
     // 3. HIGHLIGHT EXPIRED LIMITATION DATES
     function formatPastDates() {
-        // Find the container that includes the specific header
-        const limitationContainer = document.querySelector('h2.mbn.as-epsilon');
-        
-        // Check if the limitationContainer exists and has the correct text content
-        if (limitationContainer && limitationContainer.textContent.includes('Limitation and critical dates')) {
-            // Get the parent container of the header, assuming it's the one that should be targeted
-            const container = limitationContainer.closest('your-container-selector'); // Replace 'your-container-selector' with the actual selector for the container
+        // Find all h2 elements with class "mbn as-epsilon"
+        const headings = document.querySelectorAll('h2.mbn.as-epsilon');
+        let expiredFound = false;
 
-            // Find all rows within this specific container
-            const dateContainers = document.querySelectorAll('.Row');
-            let expiredFound = false;
-            dateContainers.forEach(container => {
-                const dt = container.querySelector('dt');
-                const dd = container.querySelector('dd');
-                if (dt && dd && dt.textContent.trim() === 'Date:') {
-                    const dateText = dd.textContent;
-                    const dateMatch = dateText.match(/(\d{1,2}\s+\w+\s+\d{4})/);
-                    if (dateMatch) {
-                        const dateStr = dateMatch[1];
-                        const date = new Date(dateStr);
-                        const now = new Date();
-                        if (date < now) {
-                            expiredFound = true;
-                            const newContent = dd.innerHTML.replace(dateStr, `<span style="font-weight: bold; color: red;">${dateStr} [EXPIRED]</span>`);
-                            dd.innerHTML = newContent;
+        headings.forEach(heading => {
+            // Check if the heading text matches "Limitation and critical dates"
+            if (heading.textContent.includes('Limitation and critical dates')) {
+                // Assuming the relevant content is within a parent container of this heading
+                const container = heading.closest('.Panel.xcs-action-panel.js-action-panel.ActionDataCollectionMultiRecord');
+
+                if(container) {
+                    // Find all rows within this specific container
+                    const dateContainers = document.querySelectorAll('.Row');
+            
+                    dateContainers.forEach(container => {
+                        const dt = container.querySelector('dt');
+                        const dd = container.querySelector('dd');
+                        if (dt && dd && dt.textContent.trim() === 'Date:') {
+                            const dateText = dd.textContent;
+                            const dateMatch = dateText.match(/(\d{1,2}\s+\w+\s+\d{4})/);
+                            if (dateMatch) {
+                                const dateStr = dateMatch[1];
+                                const date = new Date(dateStr);
+                                const now = new Date();
+                                if (date < now) {
+                                    expiredFound = true;
+                                    const newContent = dd.innerHTML.replace(dateStr, `<span style="font-weight: bold; color: red;">${dateStr} [EXPIRED]</span>`);
+                                    dd.innerHTML = newContent;
+                                }
+                            }
                         }
+                    });
+
+                    // Highlight the "Limitation and critical dates" panel title also
+                    if (expiredFound) {
+                        heading.style.cssText = 'color: red !important;';
                     }
                 }
-            });
-
-            // Highlight the "Limitation and critical dates" panel title also
-            if (expiredFound) {
-                limitationContainer.style.cssText = 'color: red !important;';
             }
-        }
+        });
     }
 
     // 4. HIGHLIGHT "Completed, conflicts discovered" TEXT AND CHANGE HEADING COLOUR
