@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.45d
+// @version      0.46
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -178,7 +178,7 @@
             const dd = container.querySelector('dd');
             if (dt && dd && dt.textContent.trim() === 'Date:') {
                 const dateText = dd.textContent;
-                const dateMatch = dateText.match(/(\w+\s+\w+\s+\d+,\s+\d{4})/);
+                const dateMatch = dateText.match(/(\d{1,2}\s+\w+\s+\d{4})/);
                 if (dateMatch) {
                     const dateStr = dateMatch[1];
                     const date = new Date(dateStr);
