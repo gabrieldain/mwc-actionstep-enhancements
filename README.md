@@ -7,6 +7,7 @@ This repository contains UserScripts designed to enhance the functionality and u
 - [Highlight Text Based on Field Conditions](#highlight-text-based-on-field-conditions)
 - [Matter Page Enhancements](#matter-page-enhancements)
 - [Multi-Select Resizer](#multi-select-resizer)
+- [Create Outlook Event from Page Data](#create-outlook-event-from-page-data)
 
 ## Autofill File Note Template
 
@@ -117,5 +118,26 @@ This script adds drag-and-drop resize functionality to multi-select elements and
 1. Navigate to a form with multi-select elements in Actionstep.
 2. Drag the corner of a multi-select element to resize it.
 
-### License
+## Create Outlook Event from Page Data
+
+### Description
+This script adds a button to the Actionstep page to create an Outlook calendar event based on the data from the form fields.
+
+### Features
+- Automatically extracts the Matter ID from the URL.
+- Creates a button labeled "Create Outlook Event" on the page.
+- Populates the Outlook event with data from the form fields (date, cause of action, type).
+- The button remains unclickable until all required fields are filled.
+- Prevents the form from being submitted when clicking the button.
+
+### Usage
+- Install the script in your UserScript manager.
+- Navigate to a `Limitation and Critical Dates` creation or editing page.
+- Fill in the date, cause of action, and type fields.
+- Click the "Create Outlook Event" button to generate an Outlook calendar event.
+
+### Configuration
+No specific configuration is required for this script. It dynamically checks for the required fields and automatically generates the event link based on user input.
+
+## License
 This work is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
