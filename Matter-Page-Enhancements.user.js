@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.50
+// @version      0.51
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -336,7 +336,7 @@
 
                             });
 
-                            outputDiv.textContent = outputText;
+                            outputDiv.innerHTML = outputText;
                             const detailsWrapper = document.querySelector('.DetailsWrapper');
                             if (detailsWrapper) {
                                 detailsWrapper.appendChild(outputDiv);
