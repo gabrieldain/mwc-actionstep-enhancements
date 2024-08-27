@@ -128,7 +128,6 @@ This script adds a button to the Actionstep page to create an Outlook calendar e
 - Creates a button labeled "Create Outlook Event" on the page.
 - Populates the Outlook event with data from the form fields (date, cause of action, type).
 - The button remains unclickable until all required fields are filled.
-- Prevents the form from being submitted when clicking the button.
 
 ### Usage
 - Install the script in your UserScript manager.
