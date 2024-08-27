@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.49
+// @version      0.50
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -250,6 +250,12 @@
     }
 
     // 5. PRINT RELEVANT CONTACT INFO ON MATTER PAGE
+    // Helper function
+    function encodeHTML(str) {
+        return str.replace(/[&<>"'`=\/]/g, function (s) {
+            return "&#" + s.charCodeAt(0) + ";";
+        });
+    }
     // Find the URL in the current page
     const participantDetailsDiv = document.querySelector('.ParticipantDetails');
     if (participantDetailsDiv) {
@@ -313,7 +319,7 @@
                             let outputText = '';
 
                             if (postcode) {
-                                outputText += `<b>Postcode:</b> <span id="postcode">${postcode}</span><br>`;
+                                outputText += `<b>Postcode:</b> <span id="postcode">${encodeHTML(postcode)}</span><br>`;
                             }
 
                             filteredDataPairs.forEach(pair => {
@@ -323,14 +329,14 @@
                                 if (lowerLabel === 'interpretation' && value === 'Interpreter needed') {
                                     outputText += `<b>Interpreter needed</b><br>`;
                                 } else if (lowerLabel === 'other names, variations, and spellings') {
-                                    outputText += `<b>Other names:</b> ${value}<br>`;
+                                    outputText += `<b>Other names:</b> ${encodeHTML(value)}<br>`;
                                 } else if (lowerLabel === 'preferred pronouns') {
-                                    outputText += `<b>${value}<br></b>`;
+                                    outputText += `<b>${encodeHTML(value)}<br></b>`;
                                 }
 
                             });
 
-                            outputDiv.innerHTML = outputText;
+                            outputDiv.textContent = outputText;
                             const detailsWrapper = document.querySelector('.DetailsWrapper');
                             if (detailsWrapper) {
                                 detailsWrapper.appendChild(outputDiv);
