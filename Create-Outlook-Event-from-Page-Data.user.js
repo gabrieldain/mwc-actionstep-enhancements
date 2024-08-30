@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/*
 // @grant        none
-// @version      0.92
+// @version      0.93
 // @author       Gabriel Dain
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Create-Outlook-Event-from-Page-Data.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Create-Outlook-Event-from-Page-Data.user.js
@@ -155,7 +155,7 @@
             console.log(startdt);
             const enddt = calculateNextDay(startdt);
             console.log(enddt);
-            const outlookUrl = `https://outlook.office.com/calendar/legal@migrantworkers.org.au/deeplink/compose?subject=${encodedSubject}&startdt=${startdt}&enddt=${enddt}&allday=true`;
+            const outlookUrl = `https://outlook.office.com/calendar/legal@migrantworkers.org.au/deeplink/compose?subject=${encodedSubject}&startdt=${startdt}&enddt=${enddt}&allday=true&location=https://ap-southeast-2.actionstep.com/mym/asfw/workflow/action/overview/action_id/${matterId}`;
 
             // Enable the button and set the onclick event
             button.disabled = false;
