@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/*
 // @grant        none
-// @version      0.93
+// @version      0.94
 // @author       Gabriel Dain
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Create-Outlook-Event-from-Page-Data.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Create-Outlook-Event-from-Page-Data.user.js
@@ -31,10 +31,10 @@
             "November": "11",
             "December": "12"
         };
-        const dateParts = dateString.split(" ");
+        const dateParts = dateString.trim().split(/\s+/); // Split by any number of spaces
         const month = months[dateParts[1]];
-        const day = dateParts[2].replace(",", "");
-        const year = dateParts[3]; 
+        const day = dateParts[2].replace(",", "").padStart(2, '0'); // Ensuring day is always two digits
+        const year = dateParts[3];
         return `${year}-${month}-${day}T00%3A00%3A01`;
     }
 
