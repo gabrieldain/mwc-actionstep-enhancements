@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/*
 // @grant        none
-// @version      0.9
+// @version      0.91
 // @author       Gabriel Dain
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Create-Outlook-Event-from-Page-Data.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Create-Outlook-Event-from-Page-Data.user.js
@@ -16,6 +16,30 @@
     // Initial console log to confirm the script is running
 
     // Function to extract Matter ID from the URL query parameters
+    function convertDateFormat(dateString) {
+        const months = {
+            "January": "01",
+            "February": "02",
+            "March": "03",
+            "April": "04",
+            "May": "05",
+            "June": "06",
+            "July": "07",
+            "August": "08",
+            "September": "09",
+            "October": "10",
+            "November": "11",
+            "December": "12"
+        };
+    
+        const dateParts = dateString.split("%20");
+        const month = months[dateParts[1]];
+        const day = dateParts[2].replace(",", "");
+        const year = dateParts[3];
+    
+        return `${year}-${month}-${day}T00%3A00%3A01`;
+    }
+    
     function extractMatterIdFromUrl() {
         const url = window.location.href;
 
@@ -119,8 +143,9 @@
 
             // Generate the Outlook Online new event URL
             const encodedSubject = encodeURIComponent(subject);
-            const encodedDate = encodeURIComponent(dateValue); // Encode the date extracted from the title
-            const outlookUrl = `https://outlook.office.com/calendar/0/deeplink/compose?subject=${encodedSubject}&start=${encodedDate}&end=${encodedDate}&allday=true`;
+            const startdt = convertDateFormat(dateValue);
+            const enddt = startdt.replace("00%3A00%3A01", "00%3A01%3A01");
+            const outlookUrl = `https://outlook.office.com/calendar/legal@migrantworkers.org.au/deeplink/compose?subject=${encodedSubject}&start=${encodedDate}&end=${encodedDate}&allday=true`;
 
             // Enable the button and set the onclick event
             button.disabled = false;
