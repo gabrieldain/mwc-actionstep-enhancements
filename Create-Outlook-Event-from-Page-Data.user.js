@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/*
 // @grant        none
-// @version      0.94
+// @version      1.0
 // @author       Gabriel Dain
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Create-Outlook-Event-from-Page-Data.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Create-Outlook-Event-from-Page-Data.user.js
@@ -152,9 +152,7 @@
             // Generate the Outlook Online new event URL
             const encodedSubject = encodeURIComponent(subject);
             const startdt = convertDateFormat(dateValue);
-            console.log(startdt);
             const enddt = calculateNextDay(startdt);
-            console.log(enddt);
             const outlookUrl = `https://outlook.office.com/calendar/legal@migrantworkers.org.au/deeplink/compose?subject=${encodedSubject}&startdt=${startdt}&enddt=${enddt}&allday=true&location=https://ap-southeast-2.actionstep.com/mym/asfw/workflow/action/overview/action_id/${matterId}`;
 
             // Enable the button and set the onclick event
@@ -187,14 +185,22 @@
 
             // If all elements are found and remain stable, initialize the script
             if (dateInput && causeOfActionInput && typeSelect) {
-                obs.disconnect(); // Stop observing once elements are found
                 initScript(button); // Initialize the script with the button
-            } else {
             }
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.target === dateInput && mutation.attributeName === 'title') {
+                    // The title attribute of the date input changed, so we run initScript again
+                    initScript(button);
+                }
+            });
         });
-
         // Start observing the document
-        observer.observe(document.body, { childList: true, subtree: true });
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            attributes: true, // Observe attribute changes
+            attributeFilter: ['title'] // Only observe changes to the 'title' attribute
+        });
     }
 
     // Create the button immediately
@@ -206,4 +212,3 @@
     }
 
 })();
-
