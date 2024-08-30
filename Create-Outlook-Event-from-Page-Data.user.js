@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/*
 // @grant        none
-// @version      0.91
+// @version      0.92
 // @author       Gabriel Dain
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Create-Outlook-Event-from-Page-Data.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Create-Outlook-Event-from-Page-Data.user.js
@@ -31,13 +31,21 @@
             "November": "11",
             "December": "12"
         };
-    
-        const dateParts = dateString.split("%20");
+        const dateParts = dateString.split(" ");
         const month = months[dateParts[1]];
         const day = dateParts[2].replace(",", "");
-        const year = dateParts[3];
-    
+        const year = dateParts[3]; 
         return `${year}-${month}-${day}T00%3A00%3A01`;
+    }
+
+    // Function to calculate the next day date in the same format
+    function calculateNextDay(dateString) {
+        const date = new Date(dateString.replace("T00%3A00%3A01", "T00:00:01").replace(/%3A/g, ":"));
+        date.setDate(date.getDate() + 1);
+        const nextYear = date.getFullYear();
+        const nextMonth = ("0" + (date.getMonth() + 1)).slice(-2); // Ensure two-digit format
+        const nextDay = ("0" + date.getDate()).slice(-2); // Ensure two-digit format
+        return `${nextYear}-${nextMonth}-${nextDay}T00%3A00%3A01`.replace(/:/g, "%3A");
     }
     
     function extractMatterIdFromUrl() {
@@ -144,8 +152,10 @@
             // Generate the Outlook Online new event URL
             const encodedSubject = encodeURIComponent(subject);
             const startdt = convertDateFormat(dateValue);
-            const enddt = startdt.replace("00%3A00%3A01", "00%3A01%3A01");
-            const outlookUrl = `https://outlook.office.com/calendar/legal@migrantworkers.org.au/deeplink/compose?subject=${encodedSubject}&start=${encodedDate}&end=${encodedDate}&allday=true`;
+            console.log(startdt);
+            const enddt = calculateNextDay(startdt);
+            console.log(enddt);
+            const outlookUrl = `https://outlook.office.com/calendar/legal@migrantworkers.org.au/deeplink/compose?subject=${encodedSubject}&startdt=${startdt}&enddt=${enddt}&allday=true`;
 
             // Enable the button and set the onclick event
             button.disabled = false;
@@ -177,8 +187,8 @@
 
             // If all elements are found and remain stable, initialize the script
             if (dateInput && causeOfActionInput && typeSelect) {
-                obs.disconnect();  // Stop observing once elements are found
-                initScript(button);  // Initialize the script with the button
+                obs.disconnect(); // Stop observing once elements are found
+                initScript(button); // Initialize the script with the button
             } else {
             }
         });
