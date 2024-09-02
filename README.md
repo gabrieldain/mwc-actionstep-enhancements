@@ -136,7 +136,7 @@ This script adds a button to the Actionstep page to create an Outlook calendar e
 - Go back to the Actionstep page and click "Save" to record the limitation/critical date on Actionstep.
 
 ### Configuration
-No specific configuration is required for this script. It dynamically checks for the required fields and automatically generates the event link based on user input. The event will save to the <legal AT migrantworkers DOT org DOT au> calendar even if a different calendar is displayed in the new event page.
+No specific configuration is required for this script. It dynamically checks for the required fields and automatically generates the event link based on user input. The event will save to the legal AT migrantworkers DOT org DOT au calendar even if a different calendar is displayed in the new event page.
 
 ## License
 This work is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
