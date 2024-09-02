@@ -124,19 +124,19 @@ This script adds drag-and-drop resize functionality to multi-select elements and
 This script adds a button to the Actionstep page to create an Outlook calendar event based on the data from the form fields.
 
 ### Features
-- Automatically extracts the Matter ID from the URL.
-- Creates a button labeled "Create Outlook Event" on the page.
-- Populates the Outlook event with data from the form fields (date, cause of action, type).
-- The button remains unclickable until all required fields are filled.
+- Creates a button labeled "Create Outlook Event" on the page which opens an Outlook new event page on a separate tab.
+- Populates the Outlook event with data from the form fields (date, cause of action, type, link to matter).
+- The button remains unclickable until all required fields are filled and updates with new values dynamically.
 
 ### Usage
 - Install the script in your UserScript manager.
 - Navigate to a `Limitation and Critical Dates` creation or editing page.
 - Fill in the date, cause of action, and type fields.
-- Click the "Create Outlook Event" button to generate an Outlook calendar event.
+- Click the "Create Outlook Event" button to generate an Outlook calendar event, then click "Save" and close the tab.
+- Go back to the Actionstep page and click "Save" to record the limitation/critical date on Actionstep.
 
 ### Configuration
-No specific configuration is required for this script. It dynamically checks for the required fields and automatically generates the event link based on user input.
+No specific configuration is required for this script. It dynamically checks for the required fields and automatically generates the event link based on user input. The event will save to the legal@migrantworkers.org.au calendar even if a different calendar is displayed in the new event page.
 
 ## License
 This work is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
