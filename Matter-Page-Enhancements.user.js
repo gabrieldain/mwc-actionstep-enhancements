@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.51
+// @version      0.52
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -256,6 +256,30 @@
             return "&#" + s.charCodeAt(0) + ";";
         });
     }
+    // Helper function to check if a postcode is regional based on the provided logic
+    function isRegional(postcode) {
+        return (
+            (postcode > 3210 && postcode < 3233) ||
+            postcode === 3235 ||
+            postcode === 3240 ||
+            postcode === 3328 ||
+            (postcode > 3329 && postcode < 3334) ||
+            (postcode > 3339 && postcode < 3343) ||
+            postcode === 3139 ||
+            postcode === 3329 ||
+            postcode === 3334 ||
+            postcode === 3341 ||
+            (postcode > 3096 && postcode < 3100) ||
+            (postcode > 3232 && postcode < 3235) ||
+            (postcode > 3235 && postcode < 3240) ||
+            (postcode > 3240 && postcode < 3326) ||
+            (postcode > 3344 && postcode < 3425) ||
+            (postcode > 3429 && postcode < 3800) ||
+            (postcode > 3808 && postcode < 3910) ||
+            (postcode > 3911 && postcode < 3972) ||
+            (postcode > 3977 && postcode < 3997)
+        );
+    }
     // Find the URL in the current page
     const participantDetailsDiv = document.querySelector('.ParticipantDetails');
     if (participantDetailsDiv) {
@@ -309,6 +333,10 @@
                         // Get postcode
                         const postcodeInput = doc.querySelector('input[name="post_code"]');
                         const postcode = postcodeInput ? postcodeInput.value.trim() : '';
+                        let postcodeDisplay = postcode
+                        if (isRegional(postcode)) {
+                            postcodeDisplay += ' (regional)';
+                        }
                         
                         // Print filtered data at the end of the DetailsWrapper container
                         if (filteredDataPairs.length > 0 || postcode) {
@@ -319,7 +347,7 @@
                             let outputText = '';
 
                             if (postcode) {
-                                outputText += `<b>Postcode:</b> <span id="postcode">${encodeHTML(postcode)}</span><br>`;
+                                outputText += `<b>Postcode:</b> <span id="postcode">${encodeHTML(postcodeDisplay)}</span><br>`;
                             }
 
                             filteredDataPairs.forEach(pair => {
