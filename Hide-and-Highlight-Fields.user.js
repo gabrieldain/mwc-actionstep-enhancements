@@ -40,33 +40,48 @@
     const highlightConditionsMap = {
         'Visa': {
             targetIds: ['Substantive_visa'],
-            conditions: ['*bridging*'],
-            message: '',
+            conditions: ['Bridging visa'],
+            message: 'You have told us you are on a bridging visa. What is the substantive visa that you are applying for?',
         },
         'Disadvantage_indicators-has_dependants': {
             targetIds: ['Disadvantage_indicators-number_of_dependants'],
             conditions: ['checked'],
-            message: '',
+            message: 'You have told us you have dependants who rely on you financially. How many dependants do you have?',
         },
         'Disadvantage_indicators-centrelink': {
             targetIds: ['Disadvantage_indicators-centrelink_type'],
             conditions: ['checked'],
-            message: '',
+            message: 'You have told us you are currently receiving Centrelink payments. What Centrelink payments do you receive?',
         },
         'Disadvantage_indicators-disability': {
             targetIds: ['Disadvantage_indicators-disability_type'],
             conditions: ['checked'],
-            message: '',
+            message: 'You have told us you are living with a disability. What type of disability?',
+        },
+        'Disadvantage_indicators-disability': {
+            targetIds: ['Support_needs'],
+            conditions: ['checked'],
+            message: 'Do you have any support needs?',
         },
         'Source': {
             targetIds: ['Source_name'],
             conditions: ['I was referred by another organisation'],
-            message: 'Please specify the organisation that provided the referral.'
+            message: 'You have told us you were referred to us by another organisation. Do you remember the name of the organisation?'
         },
         'Employer_status': {
-            targetIds: ['Termination-manner', 'Termination-date_description', 'Last_day_of_work_description'],
+            targetIds: ['Termination-manner'],
             conditions: ['I am not still employed by the employer and want advice about the end of my employment'],
-            message: '',
+            message: 'You have told us that you are no longer employed by your employer. How did your employment end?',
+        },
+        'Employer_status': {
+            targetIds: ['Termination-date_description'],
+            conditions: ['I am not still employed by the employer and want advice about the end of my employment'],
+            message: 'On what date were you notified that your employment was terminated/did you resign or quit? ',
+        },
+        'Employer_status': {
+            targetIds: ['Last_day_of_work_description'],
+            conditions: ['I am not still employed by the employer and want advice about the end of my employment'],
+            message: 'What was your last day of work?',
         },
         'Ideal_outcome': {
             targetIds: ['Ideal_outcome'],
@@ -81,27 +96,27 @@
         'Existing_legal_claims': {
             targetIds: ['Existing_legal_claims_detail'],
             conditions: ['Yes', 'I don\'t know/I\'m not sure'],
-            message: '',
+            message: 'You have told us you have existing legal claims related to this issue. What type of claim did you make, and which Court/Commission did you make the claim to?',
         },
         'Past_legal_assistance': {
             targetIds: ['Past_legal_assistance_detail'],
             conditions: ['Yes', 'I don\'t know/I\'m not sure'],
-            message: '',
+            message: 'You have told us you already received legal help about this issue. Who did you receive help from, and what type of help?',
         },
         'Union_membership': {
             targetIds: ['Past_union_assistance'],
             conditions: ['Yes'],
-            message: '',
+            message: 'You have told us you are a union member. Have you tried asking your union for help?',
         },
         'Past_union_assistance': {
             targetIds: ['Past_union_assistance_detail'],
             conditions: ['Yes'],
-            message: '',
+            message: 'Is your union already helping you with this issue?',
         },
         'Industry': {
             targetIds: ['Industry_other'],
             conditions: ['Other'],
-            message: '',
+            message: 'Please describe the industry.',
         },
         'Other_parties': {
             targetIds: ['Other_parties'],
