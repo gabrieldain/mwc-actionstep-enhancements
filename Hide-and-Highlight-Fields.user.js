@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide and Highlight Fields based on Conditions
 // @namespace    Migrant Workers Centre
-// @version      1.5
+// @version      1.6
 // @description  Hide specific fields based on conditions and highlight fields based on other field conditions
 // @match        *ap-southeast-2.actionstep.com/*
 // @grant        none
