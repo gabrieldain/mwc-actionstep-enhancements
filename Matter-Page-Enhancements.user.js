@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.52
+// @version      0.53
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -256,7 +256,7 @@
             return "&#" + s.charCodeAt(0) + ";";
         });
     }
-    // Helper function to check if a postcode is regional based on the provided logic
+    // Helper function to check if a postcode is regional
     function isRegional(postcode) {
         return (
             (postcode > 3210 && postcode < 3233) ||
@@ -280,6 +280,12 @@
             (postcode > 3977 && postcode < 3997)
         );
     }
+
+    // Helper function to check if a postcode is outside Victoria
+    function isOutsideVictoria(postcode) {
+        return (postcode < 3000 || postcode > 3999);
+    }
+    
     // Find the URL in the current page
     const participantDetailsDiv = document.querySelector('.ParticipantDetails');
     if (participantDetailsDiv) {
@@ -336,6 +342,9 @@
                         let postcodeDisplay = postcode
                         if (isRegional(postcode)) {
                             postcodeDisplay += ' (regional)';
+                        }
+                        if (isOutsideVictoria(postcode)) {
+                            postcodeDisplay += ' (outside Victoria)';
                         }
                         
                         // Print filtered data at the end of the DetailsWrapper container
