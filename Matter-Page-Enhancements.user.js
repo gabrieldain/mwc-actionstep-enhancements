@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.53
+// @version      0.54
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -317,6 +317,18 @@
                     // Check if fieldset exists and extract specific data
                     if (fieldset) {
                         const filteredDataPairs = [];
+                        //Get country of birth first
+                        const selectElement = doc.querySelector('#citizen_of_country_id');
+                        if (selectElement) {
+                            // Get the selected option
+                            const selectedOption = selectElement.options[selectElement.selectedIndex];
+                            const selectedValue = selectedOption.value;
+                            const selectedText = selectedOption.text;
+                            filteredDataPairs.push(`citizenship: ${selectedText}`);
+                        } else {
+                            console.error('Error: Select element not found');
+                        }
+                        
                         const fieldLabels = fieldset.querySelectorAll('label');
                         const fieldValues = fieldset.querySelectorAll('select, input[type="text"], textarea');
 
@@ -342,9 +354,10 @@
                         let postcodeDisplay = postcode
                         if (isRegional(postcode)) {
                             postcodeDisplay += ' (regional)';
-                        }
-                        if (isOutsideVictoria(postcode)) {
+                        } else if (isOutsideVictoria(postcode)) {
                             postcodeDisplay += ' (outside Victoria)';
+                        } else {
+                            postcodeDisplay += ' (inside Victoria)';
                         }
                         
                         // Print filtered data at the end of the DetailsWrapper container
@@ -363,14 +376,15 @@
                                 const [label, value] = pair.split(': ');
                                 const lowerLabel = label.toLowerCase();
 
-                                if (lowerLabel === 'interpretation' && value === 'Interpreter needed') {
-                                    outputText += `<b>Interpreter needed</b><br>`;
+                                if (lowerLabel === 'citizenship') {
+                                    outputText += `<b>Country of birth:</b> ${encodeHTML(value)}<br>`;
+                                } else if (lowerLabel === 'interpretation') {
+                                    outputText += `<b>${encodeHTML(value)}</b><br>`;
                                 } else if (lowerLabel === 'other names, variations, and spellings') {
                                     outputText += `<b>Other names:</b> ${encodeHTML(value)}<br>`;
                                 } else if (lowerLabel === 'preferred pronouns') {
-                                    outputText += `<b>${encodeHTML(value)}<br></b>`;
+                                    outputText += `<b>Pronouns:</b> ${encodeHTML(value)}<br>`;
                                 }
-
                             });
 
                             outputDiv.innerHTML = outputText;
