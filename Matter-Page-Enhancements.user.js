@@ -379,7 +379,7 @@
                                 if (lowerLabel === 'citizenship') {
                                     outputText += `<b>Country of birth:</b> ${encodeHTML(value)}<br>`;
                                 } else if (lowerLabel === 'interpretation') {
-                                    outputText += `<b>${encodeHTML(value)}</b><br>`;
+                                    outputText += `<b>Interpretation:</> ${encodeHTML(value)}<br>`;
                                 } else if (lowerLabel === 'other names, variations, and spellings') {
                                     outputText += `<b>Other names:</b> ${encodeHTML(value)}<br>`;
                                 } else if (lowerLabel === 'preferred pronouns') {
