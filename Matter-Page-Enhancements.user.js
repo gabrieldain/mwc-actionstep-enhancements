@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/mym/asfw/workflow/action*
 // @grant        none
-// @version      0.56
+// @version      0.57
 // @author       Gabriel Dain <gdain@migrantworkers.org.au>
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Matter-Page-Enhancements.user.js
@@ -234,11 +234,11 @@
                 dd.innerHTML = '<span style="font-weight: bold; color: green;">Exempt</span>';
             } else if (dd.textContent.trim() === 'Review by lawyer required') {
                 warningFound = true;
-                dd.innerHTML = '<span style="font-weight: bold; color: orange;">Review required by lawyer</span>';
+                dd.innerHTML = '<span style="font-weight: bold; color: darkorange;">Review required by lawyer</span>';
             }
         });
 
-        if (conflictFound || noConflictFound) {
+        if (conflictFound || noConflictFound || warningFound) {
             const headings = document.querySelectorAll('h2.mbn.as-epsilon');
             headings.forEach(heading => {
                 if (heading.textContent.includes('Conflict checks')) {
@@ -246,7 +246,7 @@
                         heading.style.cssText = 'color: red !important;';
                         return; // Exit if conflict is found, no further checks
                     } else if (warningFound) {
-                        heading.style.cssText = 'color: orange !important;';
+                        heading.style.cssText = 'color: darkorange !important;';
                         return; // Exit if warning is found, no further checks
                     } else if (noConflictFound) {
                         heading.style.cssText = 'color: green !important;';
