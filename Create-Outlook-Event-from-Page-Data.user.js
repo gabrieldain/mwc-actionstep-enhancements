@@ -4,7 +4,7 @@
 // @namespace    Migrant Workers Centre
 // @match        *ap-southeast-2.actionstep.com/*
 // @grant        none
-// @version      1.0
+// @version      1.1
 // @author       Gabriel Dain
 // @downloadURL  https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Create-Outlook-Event-from-Page-Data.user.js
 // @updateURL    https://github.com/gabrieldain/mwc-actionstep-enhancements/raw/main/Create-Outlook-Event-from-Page-Data.user.js
@@ -204,11 +204,13 @@
     }
 
     // Create the button immediately
-    const button = createButton();
+    // 2025-11-20 Disabled temporarily
+    // const button = createButton();
 
     // Start observing DOM changes with the button
-    if (button) {
-        observeDOMChanges(button);
-    }
+    // 2025-11-20 Disabled temporarily
+    //if (button) {
+    //    observeDOMChanges(button);
+    //}
 
 })();
