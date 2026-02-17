@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide and Highlight Fields based on Conditions
 // @namespace    Migrant Workers Centre
-// @version      1.7
+// @version      1.8
 // @description  Hide specific fields based on conditions and highlight fields based on other field conditions
 // @match        *ap-southeast-2.actionstep.com/*
 // @grant        none
@@ -15,14 +15,10 @@
 
     const hideFieldNames = [
         "Substantive_visa",
-        "Disadvantage_indicators-only_income_earner",
-        "Disadvantage_indicators-has_dependants",
-        "Disadvantage_indicators-number_of_dependants",
         "Disadvantage_indicators-financial_hardship",
         "Disadvantage_indicators-unemployed",
         "Disadvantage_indicators-centrelink",
         "Disadvantage_indicators-centrelink_type",
-        "Disadvantage_indicators-homelessness",
         "Disadvantage_indicators-disability_type[]",
         "Disadvantage_indicators-disability",
         "Disadvantage_indicators-family_violence",
@@ -43,11 +39,6 @@
             conditions: ['Bridging visa'],
             message: 'You have told us you are on a bridging visa. What is the substantive visa that you are applying for?',
         },
-        { field: 'Disadvantage_indicators-has_dependants',
-            targetIds: ['Disadvantage_indicators-number_of_dependants'],
-            conditions: ['checked'],
-            message: 'You have told us you have dependants who rely on you financially. How many dependants do you have?',
-        },
         { field: 'Disadvantage_indicators-centrelink',
             targetIds: ['Disadvantage_indicators-centrelink_type'],
             conditions: ['checked'],
@@ -57,11 +48,6 @@
             targetIds: ['Disadvantage_indicators-disability_type'],
             conditions: ['checked'],
             message: 'You have told us you are living with a disability. What type of disability?',
-        },
-        { field: 'Disadvantage_indicators-disability',
-            targetIds: ['Support_needs'],
-            conditions: ['checked'],
-            message: 'Do you have any support needs?',
         },
         { field: 'Source',
             targetIds: ['Source_name'],
